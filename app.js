@@ -40,10 +40,11 @@ const result = document.querySelector(".result");
 
 function handleError() {
   displayBMI.textContent = "Wops";
+  displayBMI.style.color = "inherit";
   result.textContent = "Remplissez correctement les inputs.";
 }
 
-function showResult() {
+function showResult(BMI) {
   const rank = BMIData.find((data) => {
     if (BMI >= data.range[0] && BMI < data.range[1]) return data;
     else if (typeof data.range === "number" && BMI >= data.range) return data;
