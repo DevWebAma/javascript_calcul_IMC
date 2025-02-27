@@ -19,9 +19,21 @@ function handleForm(e) {
 }
 
 const inputs = document.querySelectorAll("input");
+
 function calculateBMI() {
   const height = inputs[0].value;
   const weight = inputs[1].value;
 
-  console.log(height, weight);
+  if (!height || !weight || height <= 0 || weight <= 0) {
+    handleError();
+    return;
+  }
+}
+
+const displayBMI = document.querySelector(".bmi-value");
+const result = document.querySelector(".result");
+
+function handleError() {
+  displayBMI.textContent = "Wops";
+  result.textContent = "Remplissez correctement les inputs.";
 }
