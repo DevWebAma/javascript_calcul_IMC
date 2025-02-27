@@ -28,6 +28,11 @@ function calculateBMI() {
     handleError();
     return;
   }
+
+  const BMI = (weight / Math.pow(height / 100, 2)).toFixed(1);
+  console.log(BMI);
+
+  showResult(BMI);
 }
 
 const displayBMI = document.querySelector(".bmi-value");
@@ -36,4 +41,15 @@ const result = document.querySelector(".result");
 function handleError() {
   displayBMI.textContent = "Wops";
   result.textContent = "Remplissez correctement les inputs.";
+}
+
+function showResult() {
+  const rank = BMIData.find((data) => {
+    if (BMI >= data.range[0] && BMI < data.range[1]) return data;
+    else if (typeof data.range === "number" && BMI >= data.range) return data;
+  });
+
+  displayBMI.textContent = BMI;
+  displayBMI.style.color = `${rank.color}`;
+  result.textContent = `Résultat : ${rank.name}`;
 }
